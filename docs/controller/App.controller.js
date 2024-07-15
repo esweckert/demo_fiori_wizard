@@ -1,0 +1,2 @@
+sap.ui.define(["sap/ui/core/mvc/Controller"],function(e){"use strict";return e.extend("com.esweckert.demo-transfer-app.controller.App",{onInit:function(){}})});
+//# sourceMappingURL=App.controller.js.map
