@@ -11,6 +11,8 @@ mock_preview_sapui5.html
 .*/mock_preview_sapui5.html
 UIAdaptation_index.html
 
+.DS_Store
+
 AppVariant_index.html
 AppVariantPreviewPayload.zip
 mergedManifestDescriptor.json
@@ -25,4 +27,4 @@ mta_archives
 mta-*
 resources
 archive.zip
-.*_mta_build_tmp
+.*_mta_build_tmp.DS_Store
