@@ -3,7 +3,7 @@ sap.ui.define([
 ], function (Controller) {
 	"use strict";
 
-	return Controller.extend("com.media-saturn.articletransfer.controller.App", {
+	return Controller.extend("com.esweckert.demo-transfer-app.controller.App", {
 		onInit: function () {
 
 		}

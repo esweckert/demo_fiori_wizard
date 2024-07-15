@@ -1,11 +1,11 @@
 sap.ui.define([
 	"sap/ui/core/UIComponent",
 	"sap/ui/Device",
-	"com/media-saturn/articletransfer/model/models"
+	"com/esweckert/demo-transfer-app/model/models"
 ], function (UIComponent, Device, models) {
 	"use strict";
 
-	return UIComponent.extend("com.media-saturn.articletransfer.Component", {
+	return UIComponent.extend("com.esweckert.demo-transfer-app.Component", {
 
 		metadata: {
 			manifest: "json"
@@ -26,13 +26,13 @@ sap.ui.define([
 			// set the device model
 			this.setModel(models.createDeviceModel(), "device");
 		},
-		
-				/**
-		 * The component is destroyed by UI5 automatically.
-		 * In this method, the ErrorHandler is destroyed.
-		 * @public
-		 * @override
-		 */
+
+		/**
+ * The component is destroyed by UI5 automatically.
+ * In this method, the ErrorHandler is destroyed.
+ * @public
+ * @override
+ */
 		destroy: function () {
 			// call the base component's destroy function  /*suppress standard handling of messages*/
 			UIComponent.prototype.destroy.apply(this, arguments);

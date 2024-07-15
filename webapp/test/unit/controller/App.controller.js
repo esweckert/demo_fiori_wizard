@@ -1,7 +1,7 @@
 /*global QUnit*/
 
 sap.ui.define([
-	"com/media-saturn/articletransfer/controller/App.controller"
+	"com/esweckert/demo-transfer-app/controller/App.controller"
 ], function (Controller) {
 	"use strict";
 

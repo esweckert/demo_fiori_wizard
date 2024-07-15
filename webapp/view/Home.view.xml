@@ -1,82 +1,237 @@
-<mvc:View controllerName="com.media-saturn.articletransfer.controller.Home" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
-	xmlns="sap.m" xmlns:f="sap.f" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:layout="sap.ui.layout"
-	xmlns:grid="sap.ui.layout.cssgrid" height="100%">
-	<NavContainer id="navContainer">
-		<pages>
-			<f:DynamicPage id="dynamicPage" toggleHeaderOnTitleClick="{/titleClickable}" showFooter="true" class="sapUiNoContentPadding"
-				fitContent="true">
-				<!-- DynamicPage Title -->
-				<f:title>
-					<f:DynamicPageTitle>
-						<f:heading>
-							<Title text="{i18n>title}"/>
-						</f:heading>
-					</f:DynamicPageTitle>
-				</f:title>
-				<!-- DynamicPage Header -->
-				<f:content id="idPageContent">
-					<Wizard id="TransfereWizard" class="sapUiResponsivePadding--header sapUiResponsivePadding--content" complete="completedHandler"
-						enableBranching="true" finishButtonText="{i18n>upload}">
-						<WizardStep id="CountryStep" nextStep="PreferencesStep" validated="false" title="{i18n>selectSubsidiary}" icon="sap-icon://home">
-							<l:VerticalLayout class="sapUiContentPadding" width="100%">
-								<Label text="{i18n>selectCountry}" labelFor="idComboBox" required="true"/>
-								<ComboBox id="idCombobox" placeholder="{i18n>subsidiary}" selectionChange="onComboChange" required="true">
-									<items>
-										<core:Item id="idGermany" key="DE" text="{i18n>germany}"/>
-										<core:Item id="idAustria" key="AT" text="{i18n>austria}"/>
-										<core:Item id="idBelgium" key="BE" text="{i18n>belgium}"/>
-										<core:Item id="idItaly" key="IT" text="{i18n>italy}"/>
-										<core:Item id="idLuxembourg" key="LU" text="{i18n>luxembourg}"/>
-										<core:Item id="idNetherlands" key="NL" text="{i18n>netherlands}"/>
-										<core:Item id="idPortugal" key="PT" text="{i18n>portugal}"/>
-										<core:Item id="idSpain" key="ES" text="{i18n>spain}"/>
-										<core:Item id="idSweden" key="SE" text="{i18n>sweden}"/>
-										<core:Item id="idSwitzerland" key="CH" text="{i18n>switzerland}"/>
-										<core:Item id="idGreece" key="GR" text="{i18n>greece}"/>
-										<core:Item id="idHungary" key="HU" text="{i18n>hungary}"/>
-										<core:Item id="idPoland" key="PL" text="{i18n>poland}"/>
-										<core:Item id="idTurkey" key="TR" text="{i18n>turkey}"/>
-									</items>
-								</ComboBox>
-							</l:VerticalLayout>
-						</WizardStep>
-						<WizardStep id="PreferencesStep" title="{i18n>selectPreferences}" nextStep="DataSelectionStep" optional="true"
-							icon="sap-icon://action-settings">
-							<l:VerticalLayout class="sapUiContentPadding" width="100%">
-								<VBox>
-									<Label text="{i18n>selectType}"/>
-									<CheckBox id="idGlobalId" text="{i18n>selectGlobalId}" select="onGlobalIdSelect"/>
-									<CheckBox id="idMshNumber" text="{i18n>selectMshNumber}" selected="true" select="onMshNumberSelect"/>
-									<CheckBox id="idGtin" text="{i18n>selectGtin}" select="onGtinSelect"/>
-								</VBox>
-								<VBox>
-									<FlexBox alignItems="Center" justifyContent="Start">
-										<Label text="{i18n>selectHistoricalData}" labelFor="idSwitch" class="sapUiSmallMarginEnd"/>
-										<Switch id="idSwitch" state="false" change="onDateSwitch"/>
-									</FlexBox>
-								</VBox>
-							</l:VerticalLayout>
-						</WizardStep>
-						<WizardStep id="DataSelectionStep" title="{i18n>selectType}" icon="sap-icon://add-product">
-							<l:VerticalLayout class="sapUiContentPadding" width="100%">
-								<Label text="{homeView>/selectHeader}" class="sapUiTinyMarginTop" required="true"/>
-								<TextArea id="textArea" showExceededText="true" value="{homeView>/value}" maxLength="32768" rows="8" width="80%" valueState="None"
-									valueLiveUpdate="true" liveChange="handleLiveChange"/>
-								<Text text="{homeView>/selectFooter}"></Text>
-							</l:VerticalLayout>
-						</WizardStep>
-					</Wizard>
-				</f:content>
-				<!-- DynamicPage Footer -->
-				<f:footer>
-					<OverflowToolbar id="idToolbar">
-						<Button icon="sap-icon://message-popup" text="{= ${message>/}.length}" type="Emphasized" press="onMessageButtonPress"
-							visible="{= ${message>/}.length > 0 }"/>
-						<ToolbarSpacer/>
-						<Button type="Emphasized" text="{i18n>btnSubmit}" press="onSubmitButtonPress" enabled="true"/>
-					</OverflowToolbar>
-				</f:footer>
-			</f:DynamicPage>
-		</pages>
-	</NavContainer>
+<mvc:View
+    controllerName="com.esweckert.demo-transfer-app.controller.Home"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"
+    xmlns:layout="sap.ui.layout"
+    xmlns:grid="sap.ui.layout.cssgrid"
+    height="100%"
+>
+    <NavContainer id="navContainer">
+        <pages>
+            <f:DynamicPage
+                id="dynamicPage"
+                toggleHeaderOnTitleClick="{/titleClickable}"
+                showFooter="true"
+                class="sapUiNoContentPadding"
+                fitContent="true"
+            >
+                <!-- DynamicPage Title -->
+                <f:title>
+                    <f:DynamicPageTitle>
+                        <f:heading>
+                            <Title text="{i18n>title}" />
+                        </f:heading>
+                    </f:DynamicPageTitle>
+                </f:title>
+                <!-- DynamicPage Header -->
+                <f:content id="idPageContent">
+                    <Wizard
+                        id="TransfereWizard"
+                        class="sapUiResponsivePadding--header sapUiResponsivePadding--content"
+                        complete="completedHandler"
+                        enableBranching="true"
+                        finishButtonText="{i18n>upload}"
+                    >
+                        <WizardStep
+                            id="CountryStep"
+                            nextStep="PreferencesStep"
+                            validated="false"
+                            title="{i18n>selectSubsidiary}"
+                            icon="sap-icon://home"
+                        >
+                            <l:VerticalLayout
+                                class="sapUiContentPadding"
+                                width="100%"
+                            >
+                                <Label
+                                    text="{i18n>selectCountry}"
+                                    labelFor="idComboBox"
+                                    required="true"
+                                />
+                                <ComboBox
+                                    id="idCombobox"
+                                    placeholder="{i18n>subsidiary}"
+                                    selectionChange="onComboChange"
+                                    required="true"
+                                >
+                                    <items>
+                                        <core:Item
+                                            id="idGermany"
+                                            key="DE"
+                                            text="{i18n>germany}"
+                                        />
+                                        <core:Item
+                                            id="idAustria"
+                                            key="AT"
+                                            text="{i18n>austria}"
+                                        />
+                                        <core:Item
+                                            id="idBelgium"
+                                            key="BE"
+                                            text="{i18n>belgium}"
+                                        />
+                                        <core:Item
+                                            id="idItaly"
+                                            key="IT"
+                                            text="{i18n>italy}"
+                                        />
+                                        <core:Item
+                                            id="idLuxembourg"
+                                            key="LU"
+                                            text="{i18n>luxembourg}"
+                                        />
+                                        <core:Item
+                                            id="idNetherlands"
+                                            key="NL"
+                                            text="{i18n>netherlands}"
+                                        />
+                                        <core:Item
+                                            id="idPortugal"
+                                            key="PT"
+                                            text="{i18n>portugal}"
+                                        />
+                                        <core:Item
+                                            id="idSpain"
+                                            key="ES"
+                                            text="{i18n>spain}"
+                                        />
+                                        <core:Item
+                                            id="idSweden"
+                                            key="SE"
+                                            text="{i18n>sweden}"
+                                        />
+                                        <core:Item
+                                            id="idSwitzerland"
+                                            key="CH"
+                                            text="{i18n>switzerland}"
+                                        />
+                                        <core:Item
+                                            id="idGreece"
+                                            key="GR"
+                                            text="{i18n>greece}"
+                                        />
+                                        <core:Item
+                                            id="idHungary"
+                                            key="HU"
+                                            text="{i18n>hungary}"
+                                        />
+                                        <core:Item
+                                            id="idPoland"
+                                            key="PL"
+                                            text="{i18n>poland}"
+                                        />
+                                        <core:Item
+                                            id="idTurkey"
+                                            key="TR"
+                                            text="{i18n>turkey}"
+                                        />
+                                    </items>
+                                </ComboBox>
+                            </l:VerticalLayout>
+                        </WizardStep>
+                        <WizardStep
+                            id="PreferencesStep"
+                            title="{i18n>selectPreferences}"
+                            nextStep="DataSelectionStep"
+                            optional="true"
+                            icon="sap-icon://action-settings"
+                        >
+                            <l:VerticalLayout
+                                class="sapUiContentPadding"
+                                width="100%"
+                            >
+                                <VBox>
+                                    <Label text="{i18n>selectType}" />
+                                    <CheckBox
+                                        id="idProductId"
+                                        text="{i18n>selectProductId}"
+                                        select="onProductIdSelect"
+                                    />
+                                    <CheckBox
+                                        id="idExternalId"
+                                        text="{i18n>selectExternalId}"
+                                        selected="true"
+                                        select="onExternalIdSelect"
+                                    />
+                                    <CheckBox
+                                        id="idGtin"
+                                        text="{i18n>selectGtin}"
+                                        select="onGtinSelect"
+                                    />
+                                </VBox>
+                                <VBox>
+                                    <FlexBox
+                                        alignItems="Center"
+                                        justifyContent="Start"
+                                    >
+                                        <Label
+                                            text="{i18n>selectHistoricalData}"
+                                            labelFor="idSwitch"
+                                            class="sapUiSmallMarginEnd"
+                                        />
+                                        <Switch
+                                            id="idSwitch"
+                                            state="false"
+                                            change="onDateSwitch"
+                                        />
+                                    </FlexBox>
+                                </VBox>
+                            </l:VerticalLayout>
+                        </WizardStep>
+                        <WizardStep
+                            id="DataSelectionStep"
+                            title="{i18n>selectType}"
+                            icon="sap-icon://add-product"
+                        >
+                            <l:VerticalLayout
+                                class="sapUiContentPadding"
+                                width="100%"
+                            >
+                                <Label
+                                    text="{homeView>/selectHeader}"
+                                    class="sapUiTinyMarginTop"
+                                    required="true"
+                                />
+                                <TextArea
+                                    id="textArea"
+                                    showExceededText="true"
+                                    value="{homeView>/value}"
+                                    maxLength="32768"
+                                    rows="8"
+                                    width="80%"
+                                    valueState="None"
+                                    valueLiveUpdate="true"
+                                    liveChange="handleLiveChange"
+                                />
+                                <Text text="{homeView>/selectFooter}" />
+                            </l:VerticalLayout>
+                        </WizardStep>
+                    </Wizard>
+                </f:content>
+                <!-- DynamicPage Footer -->
+                <f:footer>
+                    <OverflowToolbar id="idToolbar">
+                        <Button
+                            icon="sap-icon://message-popup"
+                            text="{= ${message>/}.length}"
+                            type="Emphasized"
+                            press="onMessageButtonPress"
+                            visible="{= ${message>/}.length > 0 }"
+                        />
+                        <ToolbarSpacer />
+                        <Button
+                            type="Emphasized"
+                            text="{i18n>btnSubmit}"
+                            press="onSubmitButtonPress"
+                            enabled="true"
+                        />
+                    </OverflowToolbar>
+                </f:footer>
+            </f:DynamicPage>
+        </pages>
+    </NavContainer>
 </mvc:View>

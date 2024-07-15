@@ -7,7 +7,7 @@ sap.ui.define([
 
 	Opa5.extendConfig({
 		arrangements: new Startup(),
-		viewNamespace: "com.media-saturn.articletransfer.view.",
+		viewNamespace: "com.esweckert.demo-transfer-app.view.",
 		autoWait: true
 	});
 });

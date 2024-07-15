@@ -1,7 +1,7 @@
 {
     "_version": "1.12.0",
     "sap.app": {
-        "id": "com.media-saturn.articletransfer",
+        "id": "com.esweckert.demo-transfer-app",
         "type": "application",
         "i18n": "i18n/i18n.properties",
         "applicationVersion": {
@@ -42,7 +42,7 @@
     },
     "sap.ui5": {
         "rootView": {
-            "viewName": "com.media-saturn.articletransfer.view.App",
+            "viewName": "com.esweckert.demo-transfer-app.view.App",
             "type": "XML",
             "async": true,
             "id": "app"
@@ -67,7 +67,7 @@
             "i18n": {
                 "type": "sap.ui.model.resource.ResourceModel",
                 "settings": {
-                    "bundleName": "com.media-saturn.articletransfer.i18n.i18n"
+                    "bundleName": "com.esweckert.demo-transfer-app.i18n.i18n"
                 }
             },
             "": {
@@ -93,7 +93,7 @@
                 "routerClass": "sap.m.routing.Router",
                 "viewType": "XML",
                 "async": true,
-                "viewPath": "com.media-saturn.articletransfer.view",
+                "viewPath": "com.esweckert.demo-transfer-app.view",
                 "controlAggregation": "pages",
                 "controlId": "app"
             },

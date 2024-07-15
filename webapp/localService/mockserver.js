@@ -1,7 +1,7 @@
-sap.ui.define(['sap/ui/core/util/MockServer'], function(MockServer) {
+sap.ui.define(['sap/ui/core/util/MockServer'], function (MockServer) {
     'use strict';
     var oMockServer,
-        _sAppModulePath = 'com/media-saturn/articletransfer/',
+        _sAppModulePath = 'com/esweckert/demo-transfer-app/',
         _sJsonFilesModulePath = _sAppModulePath + 'localService/mockdata';
 
     return {
@@ -12,7 +12,7 @@ sap.ui.define(['sap/ui/core/util/MockServer'], function(MockServer) {
          * @public
          */
 
-        init: function() {
+        init: function () {
             var oUriParameters = jQuery.sap.getUriParameters(),
                 sJsonFilesUrl = jQuery.sap.getModulePath(_sJsonFilesModulePath),
                 sManifestUrl = jQuery.sap.getModulePath(_sAppModulePath + 'manifest', '.json'),
@@ -47,8 +47,8 @@ sap.ui.define(['sap/ui/core/util/MockServer'], function(MockServer) {
             });
 
             var aRequests = oMockServer.getRequests(),
-                fnResponse = function(iErrCode, sMessage, aRequest) {
-                    aRequest.response = function(oXhr) {
+                fnResponse = function (iErrCode, sMessage, aRequest) {
+                    aRequest.response = function (oXhr) {
                         oXhr.respond(
                             iErrCode,
                             {
@@ -61,7 +61,7 @@ sap.ui.define(['sap/ui/core/util/MockServer'], function(MockServer) {
 
             // handling the metadata error test
             if (oUriParameters.get('metadataError')) {
-                aRequests.forEach(function(aEntry) {
+                aRequests.forEach(function (aEntry) {
                     if (aEntry.path.toString().indexOf('$metadata') > -1) {
                         fnResponse(500, 'metadata Error', aEntry);
                     }
@@ -70,7 +70,7 @@ sap.ui.define(['sap/ui/core/util/MockServer'], function(MockServer) {
 
             // Handling request errors
             if (sErrorParam) {
-                aRequests.forEach(function(aEntry) {
+                aRequests.forEach(function (aEntry) {
                     if (aEntry.path.toString().indexOf(sEntity) > -1) {
                         fnResponse(iErrorCode, sErrorParam, aEntry);
                     }
@@ -81,7 +81,7 @@ sap.ui.define(['sap/ui/core/util/MockServer'], function(MockServer) {
             jQuery.sap.log.info('Running the app with mock data');
 
             if (aAnnotations && aAnnotations.length > 0) {
-                aAnnotations.forEach(function(sAnnotationName) {
+                aAnnotations.forEach(function (sAnnotationName) {
                     var oAnnotation = oDataSource[sAnnotationName],
                         sUri = oAnnotation.uri,
                         sLocalUri = jQuery.sap.getModulePath(
@@ -96,7 +96,7 @@ sap.ui.define(['sap/ui/core/util/MockServer'], function(MockServer) {
                             {
                                 method: 'GET',
                                 path: new RegExp('([?#].*)?'),
-                                response: function(oXhr) {
+                                response: function (oXhr) {
                                     jQuery.sap.require('jquery.sap.xml');
 
                                     var oAnnotations = jQuery.sap.sjax({
@@ -118,7 +118,7 @@ sap.ui.define(['sap/ui/core/util/MockServer'], function(MockServer) {
          * @public returns the mockserver of the app, should be used in integration tests
          * @returns {sap.ui.core.util.MockServer}
          */
-        getMockServer: function() {
+        getMockServer: function () {
             return oMockServer;
         }
     };

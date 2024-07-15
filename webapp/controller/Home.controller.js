@@ -15,13 +15,10 @@ sap.ui.define([
 	Fragment, coreLibrary) {
 	"use strict";
 
-	// shortcut for sap.ui.core.ValueState
-	//	var ValueState = coreLibrary.ValueState;
-
 	// shortcut for sap.ui.core.MessageType
 	var MessageType = coreLibrary.MessageType;
 
-	return Controller.extend("com.media-saturn.articletransfer.controller.App", {
+	return Controller.extend("com.esweckert.demo-transfer-app.controller.App", {
 		onInit: function () {
 
 			this._wizard = this.byId("TransfereWizard");
@@ -33,11 +30,11 @@ sap.ui.define([
 			var oView = this.getView();
 			var oViewModel = new JSONModel({
 				country: null,
-				mshNumber: true,
-				globalId: false,
+				externalId: true,
+				productId: false,
 				gtin: false,
-				selectHeader: this.getResourceBundle().getText("labelMshNumber"),
-				selectFooter: this.getResourceBundle().getText("noteMshNumber"),
+				selectHeader: this.getResourceBundle().getText("labelExternalId"),
+				selectFooter: this.getResourceBundle().getText("noteExternalId"),
 				dateLimit: false,
 				value: '',
 				state: false
@@ -45,7 +42,7 @@ sap.ui.define([
 
 			// Create upload fragment
 			Fragment.load({
-				name: "com.media-saturn.articletransfer.view.UploadPopover",
+				name: "com.esweckert.demo-transfer-app.view.UploadPopover",
 				controller: this
 			}).then(function (pDialog) {
 				this._oUploadDialog = pDialog;
@@ -87,22 +84,22 @@ sap.ui.define([
 			this.getView().getModel("homeView").setProperty("/dateLimit", bState);
 		},
 
-		onGlobalIdSelect: function (oEvent) {
-			this.handlePreferences("idGlobalId");
+		onProductIdSelect: function (oEvent) {
+			this.handlePreferences("idProductId");
 			this.byId("idGtin").setSelected(false)
-			this.byId("idMshNumber").setSelected(false);
+			this.byId("idExternalId").setSelected(false);
 		},
 
-		onMshNumberSelect: function (oEvent) {
-			this.handlePreferences("idMshNumber");
+		onExternalIdSelect: function (oEvent) {
+			this.handlePreferences("idExternalId");
 			this.byId("idGtin").setSelected(false)
-			this.byId("idGlobalId").setSelected(false);
+			this.byId("idProductId").setSelected(false);
 		},
 
 		onGtinSelect: function (oEvent) {
 			this.handlePreferences("idGtin");
-			this.byId("idGlobalId").setSelected(false)
-			this.byId("idMshNumber").setSelected(false);
+			this.byId("idProductId").setSelected(false)
+			this.byId("idExternalId").setSelected(false);
 		},
 
 		onMessageButtonPress: function (oEvent) {
@@ -116,9 +113,9 @@ sap.ui.define([
 				oView = this.getView().getModel("homeView"),
 				sParam;
 
-			if (oView.getProperty("/mshNumber")) {
+			if (oView.getProperty("/externalId")) {
 				sParam = "L";
-			} else if (oView.getProperty("/globalId")) {
+			} else if (oView.getProperty("/productId")) {
 				sParam = "G";
 			} else if (oView.getProperty("/gtin")) {
 				sParam = "E";
@@ -135,7 +132,7 @@ sap.ui.define([
 					articles: sData,
 					subsidary: this.getView().getModel("homeView").getProperty("/country"),
 					articleKind: sParam,
-					legacyProdid: this.getView().getModel("homeView").getProperty("/mshNumber"),
+					legacyProdid: this.getView().getModel("homeView").getProperty("/externalId"),
 					creatatCheck: this.getView().getModel("homeView").getProperty("/dateLimit")
 				};
 				that._postData(oJson);
@@ -155,12 +152,12 @@ sap.ui.define([
 
 			// as long as a value exist number type can not be changed
 			if (sValue.length >= 1) {
-				this.byId("idGlobalId").setEnabled(false);
-				this.byId("idMshNumber").setEnabled(false);
+				this.byId("idProductId").setEnabled(false);
+				this.byId("idExternalId").setEnabled(false);
 				this.byId("idGtin").setEnabled(false);
 			} else {
-				this.byId("idGlobalId").setEnabled(true);
-				this.byId("idMshNumber").setEnabled(true);
+				this.byId("idProductId").setEnabled(true);
+				this.byId("idExternalId").setEnabled(true);
 				this.byId("idGtin").setEnabled(true);
 			}
 
@@ -168,7 +165,7 @@ sap.ui.define([
 
 			if (oViewModel.getProperty("/gtin")) {
 				aLength.push(8, 13, 14);
-			} else if (oViewModel.getProperty("/mshNumber")) {
+			} else if (oViewModel.getProperty("/externalId")) {
 				aLength.push(7);
 			} else {
 				aLength.push(12);
@@ -194,21 +191,21 @@ sap.ui.define([
 
 		handlePreferences: function (sSelected) {
 
-			if (sSelected === "idMshNumber") {
-				this.getView().getModel("homeView").setProperty("/mshNumber", true);
-				this.getView().getModel("homeView").setProperty("/globalId", false);
+			if (sSelected === "idExternalId") {
+				this.getView().getModel("homeView").setProperty("/externalId", true);
+				this.getView().getModel("homeView").setProperty("/productId", false);
 				this.getView().getModel("homeView").setProperty("/gtin", false);
-				this.getView().getModel("homeView").setProperty("/selectHeader", this.getResourceBundle().getText("labelMshNumber"));
-				this.getView().getModel("homeView").setProperty("/selectFooter", this.getResourceBundle().getText("noteMshNumber"));
-			} else if (sSelected === "idGlobalId") {
-				this.getView().getModel("homeView").setProperty("/mshNumber", false);
-				this.getView().getModel("homeView").setProperty("/globalId", true);
+				this.getView().getModel("homeView").setProperty("/selectHeader", this.getResourceBundle().getText("labelExternalId"));
+				this.getView().getModel("homeView").setProperty("/selectFooter", this.getResourceBundle().getText("noteExternalId"));
+			} else if (sSelected === "idProductId") {
+				this.getView().getModel("homeView").setProperty("/externalId", false);
+				this.getView().getModel("homeView").setProperty("/productId", true);
 				this.getView().getModel("homeView").setProperty("/gtin", false);
-				this.getView().getModel("homeView").setProperty("/selectHeader", this.getResourceBundle().getText("labelGlobalId"));
-				this.getView().getModel("homeView").setProperty("/selectFooter", this.getResourceBundle().getText("noteGlobalId"));
+				this.getView().getModel("homeView").setProperty("/selectHeader", this.getResourceBundle().getText("labelProductId"));
+				this.getView().getModel("homeView").setProperty("/selectFooter", this.getResourceBundle().getText("noteProductId"));
 			} else if (sSelected === "idGtin") {
-				this.getView().getModel("homeView").setProperty("/mshNumber", false);
-				this.getView().getModel("homeView").setProperty("/globalId", false);
+				this.getView().getModel("homeView").setProperty("/externalId", false);
+				this.getView().getModel("homeView").setProperty("/productId", false);
 				this.getView().getModel("homeView").setProperty("/gtin", true);
 				this.getView().getModel("homeView").setProperty("/selectHeader", this.getResourceBundle().getText("labelGtin"));
 				this.getView().getModel("homeView").setProperty("/selectFooter", this.getResourceBundle().getText("noteGtin"));
@@ -262,7 +259,7 @@ sap.ui.define([
 			// create popover lazily
 			if (!this._oMessagePopover) {
 				this._oMessagePopover = sap.ui.xmlfragment(this.getView().getId(),
-					"com.media-saturn.articletransfer.view.MessagePopover", this);
+					"com.esweckert.demo-transfer-app.view.MessagePopover", this);
 				this.getView().addDependent(this._oMessagePopover);
 			}
 			return this._oMessagePopover;

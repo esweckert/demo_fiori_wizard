@@ -5,7 +5,7 @@ sap.ui.getCore().attachInit(function () {
 	"use strict";
 
 	sap.ui.require([
-		"com/media-saturn/articletransfer/test/integration/AllJourneys"
+		"com/esweckert/demo-transfer-app/test/integration/AllJourneys"
 	], function () {
 		QUnit.start();
 	});

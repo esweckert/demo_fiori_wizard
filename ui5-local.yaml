@@ -1,6 +1,6 @@
 specVersion: "3.1"
 metadata:
-  name: com.media-saturn.articletransfer
+  name: com.esweckert.demo-transfer-app
 type: application
 framework:
   name: SAPUI5
@@ -36,5 +36,5 @@ server:
     - name: fiori-tools-preview
       afterMiddleware: fiori-tools-appreload
       configuration:
-        component: com.media-saturn.articletransfer
+        component: com.esweckert.demo-transfer-app
         ui5Theme: sap_fiori_3
