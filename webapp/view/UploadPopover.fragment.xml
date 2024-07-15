@@ -1,0 +1,14 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified" xmlns:core="sap.ui.core" class="viewPadding">
+	<Dialog title="Upload from CSV file" resizable="false" draggable="true" showHeader="true" horizontalScrolling="false" type="Standard">
+		<content>
+			<VBox class="sapUiSmallMarginTop sapUiSmallMarginBottom sapUiMediumMarginBegin sapUiMediumMarginEnd">
+				<Label id="attachFile" text="{i18n>labelFile}"/>
+				<u:FileUploader id="fileUploader" tooltip="{i18n>tooltipUpload}" fileType="csv" sendXHR="true" uploadComplete="handleUploadComplete"/>
+			</VBox>
+		</content>
+		<buttons>
+			<Button icon="sap-icon://upload" id="uploadBtn" press="onUploadBtnPress" text="{i18n>btnUpload}" type="Emphasized"/>
+			<Button icon="sap-icon://sys-cancel" id="cancelBtn" press="onCloseUploadDialog" text="{i18n>btnClose}" type="Emphasized"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>
