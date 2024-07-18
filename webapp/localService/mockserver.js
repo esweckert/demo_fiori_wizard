@@ -12,7 +12,7 @@ sap.ui.define(['sap/ui/core/util/MockServer'], function (MockServer) {
          * @public
          */
 
-        init: function () {
+        init: function (sODataServiceUrl) {
             var oUriParameters = jQuery.sap.getUriParameters(),
                 sJsonFilesUrl = jQuery.sap.getModulePath(_sJsonFilesModulePath),
                 sManifestUrl = jQuery.sap.getModulePath(_sAppModulePath + 'manifest', '.json'),
@@ -27,7 +27,8 @@ sap.ui.define(['sap/ui/core/util/MockServer'], function (MockServer) {
                     '.xml'
                 ),
                 // ensure there is a trailing slash
-                sMockServerUrl = /.*\/$/.test(oMainDataSource.uri) ? oMainDataSource.uri : oMainDataSource.uri + '/',
+                sMockServerUrl = sODataServiceUrl,
+         //       sMockServerUrl = /.*\/$/.test(oMainDataSource.uri) ? oMainDataSource.uri : oMainDataSource.uri + '/',
                 aAnnotations = oMainDataSource.settings.annotations;
 
             oMockServer = new MockServer({

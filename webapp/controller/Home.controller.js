@@ -54,7 +54,7 @@ sap.ui.define([
 				})
 			);
 
-			this.getView().bindElement("/Employees(1)");
+			this.getView().bindElement("/ProductSet");
 
 			// Create upload fragment
 			Fragment.load({
