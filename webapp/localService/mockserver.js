@@ -22,6 +22,7 @@ sap.ui.define(['sap/ui/core/util/MockServer'], function (MockServer) {
                 oManifest = jQuery.sap.syncGetJSON(sManifestUrl).data,
                 oDataSource = oManifest['sap.app'].dataSources,
                 oMainDataSource = oDataSource.ZMM_PROCESS_MMS_ARTICLE_SRV,
+                sLocalServicePath = sap.ui.require.toUrl("com/esweckert/demo-transfer-app/localService"),
                 sMetadataUrl = jQuery.sap.getModulePath(
                     _sAppModulePath + oMainDataSource.settings.localUri.replace('.xml', ''),
                     '.xml'
@@ -42,10 +43,16 @@ sap.ui.define(['sap/ui/core/util/MockServer'], function (MockServer) {
             });
 
             // load local mock data
-            oMockServer.simulate(sMetadataUrl, {
+    /**         oMockServer.simulate(sMetadataUrl, {
                 sMockdataBaseUrl: sJsonFilesUrl,
                 bGenerateMissingMockData: true
+            }); */
+            
+            oMockServer.simulate(sLocalServicePath + "/metadata.xml", {
+                sMockdataBaseUrl: sLocalServicePath + "/data",
+                bGenerateMissingMockData: false
             });
+
 
             var aRequests = oMockServer.getRequests(),
                 fnResponse = function (iErrCode, sMessage, aRequest) {
