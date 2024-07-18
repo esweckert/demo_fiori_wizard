@@ -1,0 +1,182 @@
+[
+    {
+        "guid": "5684a755-1dfe-5bc0-aef0-7ba26647d956",
+        "articles": "articles1",
+        "subsidary": "s1",
+        "articleKind": "1",
+        "legacyProdid": false,
+        "creatatCheck": true,
+        "noArticles": "noArticles1"
+    },
+    {
+        "guid": "83e9beaa-fe55-56cb-9dda-cd22bc71a99f",
+        "articles": "articles2",
+        "subsidary": "s2",
+        "articleKind": "2",
+        "legacyProdid": false,
+        "creatatCheck": true,
+        "noArticles": "noArticles2"
+    },
+    {
+        "guid": "c7b12fb3-0097-53e0-94f8-075fd6be72c3",
+        "articles": "articles3",
+        "subsidary": "s3",
+        "articleKind": "3",
+        "legacyProdid": true,
+        "creatatCheck": false,
+        "noArticles": "noArticles3"
+    },
+    {
+        "guid": "1b770f1e-7a3a-5ea9-b25b-d67cb96b2ed5",
+        "articles": "articles4",
+        "subsidary": "s4",
+        "articleKind": "4",
+        "legacyProdid": false,
+        "creatatCheck": true,
+        "noArticles": "noArticles4"
+    },
+    {
+        "guid": "dbc8338e-d86e-50b5-9fb6-a2035ac14928",
+        "articles": "articles5",
+        "subsidary": "s5",
+        "articleKind": "5",
+        "legacyProdid": true,
+        "creatatCheck": true,
+        "noArticles": "noArticles5"
+    },
+    {
+        "guid": "131e2fea-f70e-5654-b163-b66f517815c4",
+        "articles": "articles6",
+        "subsidary": "s6",
+        "articleKind": "6",
+        "legacyProdid": false,
+        "creatatCheck": false,
+        "noArticles": "noArticles6"
+    },
+    {
+        "guid": "722a040d-054f-58a6-9af0-321a7ecb8c61",
+        "articles": "articles7",
+        "subsidary": "s7",
+        "articleKind": "7",
+        "legacyProdid": true,
+        "creatatCheck": true,
+        "noArticles": "noArticles7"
+    },
+    {
+        "guid": "935c79f8-35be-5400-893a-a249202c6c0f",
+        "articles": "articles8",
+        "subsidary": "s8",
+        "articleKind": "8",
+        "legacyProdid": false,
+        "creatatCheck": true,
+        "noArticles": "noArticles8"
+    },
+    {
+        "guid": "73bf894e-f2cd-5ab3-909f-31e973772da6",
+        "articles": "articles9",
+        "subsidary": "s9",
+        "articleKind": "9",
+        "legacyProdid": true,
+        "creatatCheck": true,
+        "noArticles": "noArticles9"
+    },
+    {
+        "guid": "9be03c33-d73b-5463-a645-f47b1056a626",
+        "articles": "articles10",
+        "subsidary": "10",
+        "articleKind": "0",
+        "legacyProdid": true,
+        "creatatCheck": false,
+        "noArticles": "noArticles10"
+    },
+    {
+        "guid": "ea86aaef-9e32-5cd2-9c53-f90e781027d0",
+        "articles": "articles11",
+        "subsidary": "11",
+        "articleKind": "1",
+        "legacyProdid": true,
+        "creatatCheck": false,
+        "noArticles": "noArticles11"
+    },
+    {
+        "guid": "52e96cc5-7812-5bf9-832e-99e0e7010ccf",
+        "articles": "articles12",
+        "subsidary": "12",
+        "articleKind": "2",
+        "legacyProdid": true,
+        "creatatCheck": true,
+        "noArticles": "noArticles12"
+    },
+    {
+        "guid": "e26dc502-e71c-5d83-bfd1-f94e3b8a809b",
+        "articles": "articles13",
+        "subsidary": "13",
+        "articleKind": "3",
+        "legacyProdid": false,
+        "creatatCheck": false,
+        "noArticles": "noArticles13"
+    },
+    {
+        "guid": "f10ed14e-96de-5f71-9bb7-2c556ba24337",
+        "articles": "articles14",
+        "subsidary": "14",
+        "articleKind": "4",
+        "legacyProdid": false,
+        "creatatCheck": false,
+        "noArticles": "noArticles14"
+    },
+    {
+        "guid": "74f4c487-37d5-5013-989e-0c1f1032772f",
+        "articles": "articles15",
+        "subsidary": "15",
+        "articleKind": "5",
+        "legacyProdid": true,
+        "creatatCheck": true,
+        "noArticles": "noArticles15"
+    },
+    {
+        "guid": "2c6f69fe-1335-5862-ac6f-d6aeeab05ef1",
+        "articles": "articles16",
+        "subsidary": "16",
+        "articleKind": "6",
+        "legacyProdid": true,
+        "creatatCheck": false,
+        "noArticles": "noArticles16"
+    },
+    {
+        "guid": "3df75360-2311-5abc-9f97-58a5a5b0788e",
+        "articles": "articles17",
+        "subsidary": "17",
+        "articleKind": "7",
+        "legacyProdid": false,
+        "creatatCheck": true,
+        "noArticles": "noArticles17"
+    },
+    {
+        "guid": "e89aa813-4fe5-5f52-9146-2c2619b65d2a",
+        "articles": "articles18",
+        "subsidary": "18",
+        "articleKind": "8",
+        "legacyProdid": true,
+        "creatatCheck": false,
+        "noArticles": "noArticles18"
+    },
+    {
+        "guid": "dfc4a171-eb57-5fb5-8105-9b90351cc46f",
+        "articles": "articles19",
+        "subsidary": "19",
+        "articleKind": "9",
+        "legacyProdid": true,
+        "creatatCheck": true,
+        "noArticles": "noArticles19"
+    },
+    {
+        "guid": "b05ade73-524a-541d-8921-6e3d9ae8ff32",
+        "articles": "articles20",
+        "subsidary": "20",
+        "articleKind": "0",
+        "legacyProdid": true,
+        "creatatCheck": true,
+        "noArticles": "noArticles20"
+    }
+]

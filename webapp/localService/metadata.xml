@@ -1,22 +1,32 @@
-<?xml version="1.0" encoding="utf-8"?>
-<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
-	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
-	<edmx:DataServices m:DataServiceVersion="2.0">
-		<Schema Namespace="ZMM_PROCESS_MMS_ARTICLE_SRV" xml:lang="de" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
-			<EntityType Name="ProcessType" sap:content-version="1">
-				<Key><PropertyRef Name="guid"/></Key><Property Name="guid" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="UUID" sap:updatable="false" sap:sortable="false"
-					sap:filterable="false"/><Property Name="articles" Type="Edm.String" Nullable="false" MaxLength="512" sap:unicode="false" sap:updatable="false" sap:sortable="false"
-					sap:filterable="false"/><Property Name="subsidary" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:updatable="false" sap:sortable="false"
-					sap:filterable="false"/><Property Name="init_disabled" Type="Edm.Boolean" sap:unicode="false" sap:label="Flag" sap:updatable="false" sap:sortable="false"
-					sap:filterable="false"/></EntityType>
-			<EntityType Name="ErrorsType" sap:content-version="1">
-				<Key><PropertyRef Name="message_num"/></Key><Property Name="message_num" Type="Edm.String" Nullable="false" MaxLength="32" sap:unicode="false" sap:creatable="false"
-					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="message_text" Type="Edm.String" Nullable="false" MaxLength="512" sap:unicode="false" sap:creatable="false"
-					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
-			<EntityContainer Name="ZMM_PROCESS_MMS_ARTICLE_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="Process" EntityType="ZMM_PROCESS_MMS_ARTICLE_SRV.ProcessType" sap:updatable="false" sap:deletable="false"
-				sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="Errors" EntityType="ZMM_PROCESS_MMS_ARTICLE_SRV.ErrorsType" sap:updatable="false" sap:deletable="false"
-				sap:pageable="false" sap:addressable="false" sap:content-version="1"/></EntityContainer><atom:link rel="self" href="https://SAPEFS.MEDIA-SATURN.COM:443/sap/opu/odata/sap/ZMM_PROCESS_MMS_ARTICLE_SRV/$metadata"
-				xmlns:atom="http://www.w3.org/2005/Atom"/><atom:link rel="latest-version" href="https://SAPEFS.MEDIA-SATURN.COM:443/sap/opu/odata/sap/ZMM_PROCESS_MMS_ARTICLE_SRV/$metadata"
-				xmlns:atom="http://www.w3.org/2005/Atom"/></Schema>
-	</edmx:DataServices>
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+<edmx:DataServices m:DataServiceVersion="2.0">
+<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZMM_PROCESS_MMS_ARTICLE_SRV" xml:lang="de" sap:schema-version="1">
+<Annotation xmlns="http://docs.oasis-open.org/odata/ns/edm" Term="Core.SchemaVersion" String="1.0.0"/>
+<EntityType Name="ErrorsType" sap:content-version="1">
+<Key>
+<PropertyRef Name="message_num"/>
+</Key>
+<Property Name="message_num" Type="Edm.String" Nullable="false" MaxLength="32" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+<Property Name="message_text" Type="Edm.String" Nullable="false" MaxLength="512" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+</EntityType>
+<EntityType Name="ProductSetType" sap:content-version="1">
+<Key>
+<PropertyRef Name="guid"/>
+</Key>
+<Property Name="guid" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="UUID" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+<Property Name="articles" Type="Edm.String" Nullable="false" sap:unicode="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+<Property Name="subsidary" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+<Property Name="articleKind" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+<Property Name="legacyProdid" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="Flag" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+<Property Name="creatatCheck" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+<Property Name="noArticles" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+</EntityType>
+<EntityContainer Name="ZMM_PROCESS_MMS_ARTICLE_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+<EntitySet Name="Errors" EntityType="ZMM_PROCESS_MMS_ARTICLE_SRV.ErrorsType" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+<EntitySet Name="ProductSet" EntityType="ZMM_PROCESS_MMS_ARTICLE_SRV.ProductSetType" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+</EntityContainer>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="http://sape15.media-saturn.com:8015/sap/opu/odata/sap/ZMM_PROCESS_MMS_ARTICLE_SRV/$metadata"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="http://sape15.media-saturn.com:8015/sap/opu/odata/sap/ZMM_PROCESS_MMS_ARTICLE_SRV/$metadata"/>
+</Schema>
+</edmx:DataServices>
 </edmx:Edmx>

@@ -301,7 +301,7 @@ sap.ui.define([
 					var sErrorMsg = oResponse.message;
 					MessageBox.error(sErrorMsg);
 				}
-			});
+			}); 
 
 		},
 
