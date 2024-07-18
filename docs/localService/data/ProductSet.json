@@ -1,0 +1,16 @@
+{
+    "d": {
+        "__metadata": {
+            "id": "https://SAPE15.MEDIA-SATURN.COM:443/sap/opu/odata/sap/ZMM_PROCESS_MMS_ARTICLE_SRV/ProductSet(guid'00000000-0000-0000-0000-000000000000')",
+            "uri": "https://SAPE15.MEDIA-SATURN.COM:443/sap/opu/odata/sap/ZMM_PROCESS_MMS_ARTICLE_SRV/ProductSet(guid'00000000-0000-0000-0000-000000000000')",
+            "type": "ZMM_PROCESS_MMS_ARTICLE_SRV.ProductSetType"
+        },
+        "guid": "00000000-0000-0000-0000-000000000000",
+        "articles": "3242223",
+        "subsidary": "LU",
+        "articleKind": "L",
+        "legacyProdid": true,
+        "creatatCheck": false,
+        "noArticles": "1 "
+    }
+}

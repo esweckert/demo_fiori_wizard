@@ -10,9 +10,11 @@ sap.ui.define([
 	"sap/m/MessageToast",
 	"sap/ui/core/message/Message",
 	"sap/ui/core/Fragment",
-	"sap/ui/core/library"
+	"sap/ui/core/library",
+	"sap/ui/model/odata/v2/ODataModel",
+	"com/esweckert/demo-transfer-app/localService/mockserver"
 ], function (Controller, JSONModel, library, HorizontalLayout, VerticalLayout, Dialog, DialogType, MessageBox, MessageToast, Message,
-	Fragment, coreLibrary) {
+	Fragment, coreLibrary, ODataModel, mockserver) {
 	"use strict";
 
 	// shortcut for sap.ui.core.MessageType
@@ -39,6 +41,21 @@ sap.ui.define([
 				value: '',
 				state: false
 			});
+
+			/**			var sODataServiceUrl = "/sap/opu/odata/sap/ZMM_PROCESS_MMS_ARTICLE_SRV/";
+			 
+						// init our mock server
+						mockserver.init(sODataServiceUrl);
+			
+						// Northwind service
+						this.getView().setModel(
+							new ODataModel(sODataServiceUrl, {
+								defaultBindingMode: "TwoWay"
+							})
+						);
+			
+						this.getView().bindElement("/ProductSet");
+						*/
 
 			// Create upload fragment
 			Fragment.load({
@@ -283,6 +300,7 @@ sap.ui.define([
 					var sData = that.getView().byId("textArea").getValue();
 					var aData = sData.split(',');
 					var iCount = aData.length;
+
 
 					MessageBox.success(that.getResourceBundle().getText("successUpload"), {
 						title: that.getResourceBundle().getText("successUploadTitle"),
