@@ -1,5 +1,2 @@
-function initModel() {
-	var sUrl = "/sap/opu/odata/sap/ZMM_PROCESS_MMS_ARTICLE_SRV/";
-	var oModel = new sap.ui.model.odata.ODataModel(sUrl, true);
-	sap.ui.getCore().setModel(oModel);
-}
+function initModel(){var a="/sap/opu/odata/sap/ZMM_PROCESS_MMS_ARTICLE_SRV/";var e=new sap.ui.model.odata.ODataModel(a,true);sap.ui.getCore().setModel(e)}
+//# sourceMappingURL=serviceBinding.js.map
