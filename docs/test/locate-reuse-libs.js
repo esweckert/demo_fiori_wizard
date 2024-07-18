@@ -1,2 +1,217 @@
-(function(sap){var e=function(e){var n=e;var t="";var i=["sap.apf","sap.base","sap.chart","sap.collaboration","sap.f","sap.fe","sap.fileviewer","sap.gantt","sap.landvisz","sap.m","sap.ndc","sap.ovp","sap.rules","sap.suite","sap.tnt","sap.ui","sap.uiext","sap.ushell","sap.uxap","sap.viz","sap.webanalytics","sap.zen"];function r(e,n){var t=n;Object.keys(e).forEach(function(e){if(!i.some(function(n){return e===n||e.startsWith(n+".")})){if(t.length>0){t=t+","+e}else{t=e}}});return t}return new Promise(function(i,a){$.ajax(n).done(function(e){if(e){if(e["sap.ui5"]&&e["sap.ui5"].dependencies){if(e["sap.ui5"].dependencies.libs){t=r(e["sap.ui5"].dependencies.libs,t)}if(e["sap.ui5"].dependencies.components){t=r(e["sap.ui5"].dependencies.components,t)}}if(e["sap.ui5"]&&e["sap.ui5"].componentUsages){t=r(e["sap.ui5"].componentUsages,t)}}i(t)}).fail(function(){a(new Error("Could not fetch manifest at '"+e))})})};function n(e){Object.keys(e).forEach(function(n){var t=e[n];if(t&&t.dependencies){t.dependencies.forEach(function(e){if(e.url&&e.url.length>0&&e.type==="UI5LIB"){sap.ui.require(["sap/base/Log"],function(n){n.info("Registering Library "+e.componentId+" from server "+e.url)});var n=e.componentId.replace(/\./g,"/");var t={paths:{}};t.paths[n]=e.url;sap.ui.loader.config(t)}})}})}sap.registerComponentDependencyPaths=function(t){return e(t).then(function(e){if(e&&e.length>0){var t="/sap/bc/ui2/app_index/ui5_app_info?id="+e;var i="";return new Promise(function(e){sap.ui.require(["sap/base/util/UriParameters"],function(n){i=n.fromQuery(window.location.search).get("sap-client");if(i&&i.length===3){t=t+"&sap-client="+i}e(t)})}).then(function(e){return $.ajax(e).done(function(e){if(e){n(e)}})})}else{return undefined}})}})(sap);function registerSAPFonts(){sap.ui.require(["sap/ui/core/IconPool"],function(e){var n={fontFamily:"SAP-icons-TNT",fontURI:sap.ui.require.toUrl("sap/tnt/themes/base/fonts/")};e.registerFont(n);var t={fontFamily:"BusinessSuiteInAppSymbols",fontURI:sap.ui.require.toUrl("sap/ushell/themes/base/fonts/")};e.registerFont(t)})}var currentScript=document.getElementById("locate-reuse-libs");if(!currentScript){currentScript=document.currentScript}var manifestUri=currentScript.getAttribute("data-sap-ui-manifest-uri");var componentName=currentScript.getAttribute("data-sap-ui-componentName");var useMockserver=currentScript.getAttribute("data-sap-ui-use-mockserver");sap.registerComponentDependencyPaths(manifestUri).catch(function(e){sap.ui.require(["sap/base/Log"],function(n){n.error(e)})}).finally(function(){sap.ui.getCore().attachInit(function(){var e=sap.ui.getCore().getConfiguration().getLanguage();sap.ui.require(["sap/base/i18n/ResourceBundle"],function(n){var t=n.create({url:"i18n/i18n.properties",locale:e});document.title=t.getText("appTitle")})});if(componentName&&componentName.length>0){if(useMockserver&&useMockserver==="true"){sap.ui.getCore().attachInit(function(){registerSAPFonts();sap.ui.require([componentName.replace(/\./g,"/")+"/localService/mockserver"],function(e){e.init();sap.ushell.Container.createRenderer().placeAt("content")})})}else{sap.ui.require(["sap/ui/core/ComponentSupport"]);sap.ui.getCore().attachInit(function(){registerSAPFonts();var e=sap.ui.getCore().getConfiguration().getLanguage();sap.ui.require(["sap/base/i18n/ResourceBundle"],function(n){var t=n.create({url:"i18n/i18n.properties",locale:e});document.title=t.getText("appTitle")})})}}else{sap.ui.getCore().attachInit(function(){registerSAPFonts();sap.ushell.Container.createRenderer().placeAt("content")})}});
-//# sourceMappingURL=locate-reuse-libs.js.map
+(function (sap) {
+    var fioriToolsGetManifestLibs = function (manifestPath) {
+        var url = manifestPath;
+        var result = "";
+        // SAPUI5 delivered namespaces from https://ui5.sap.com/#/api/sap
+        var ui5Libs = [
+            "sap.apf",
+            "sap.base",
+            "sap.chart",
+            "sap.collaboration",
+            "sap.f",
+            "sap.fe",
+            "sap.fileviewer",
+            "sap.gantt",
+            "sap.landvisz",
+            "sap.m",
+            "sap.ndc",
+            "sap.ovp",
+            "sap.rules",
+            "sap.suite",
+            "sap.tnt",
+            "sap.ui",
+            "sap.uiext",
+            "sap.ushell",
+            "sap.uxap",
+            "sap.viz",
+            "sap.webanalytics",
+            "sap.zen"
+        ];
+        function getKeys(libOrComp, libOrCompKeysString) {
+            var libOrCompKeysStringTmp = libOrCompKeysString;
+            Object.keys(libOrComp).forEach(function (libOrCompKey) {
+                // ignore libs or Components that start with SAPUI5 delivered namespaces
+                if (!ui5Libs.some(function (substring) { return libOrCompKey === substring || libOrCompKey.startsWith(substring + "."); })) {
+                    if (libOrCompKeysStringTmp.length > 0) {
+                        libOrCompKeysStringTmp = libOrCompKeysStringTmp + "," + libOrCompKey;
+                    } else {
+                        libOrCompKeysStringTmp = libOrCompKey;
+                    }
+                }
+            });
+            return libOrCompKeysStringTmp;
+        }
+        return new Promise(function (resolve, reject) {
+            $.ajax(url)
+                .done(function (manifest) {
+                    if (manifest) {
+                        if (
+                            manifest["sap.ui5"] &&
+                            manifest["sap.ui5"].dependencies
+                        ) {
+                            if (manifest["sap.ui5"].dependencies.libs) {
+                                result = getKeys(manifest["sap.ui5"].dependencies.libs, result);
+                            }
+                            if (manifest["sap.ui5"].dependencies.components) {
+                                result = getKeys(manifest["sap.ui5"].dependencies.components, result);
+                            }
+                        }
+                        if (
+                            manifest["sap.ui5"] &&
+                            manifest["sap.ui5"].componentUsages
+                        ) {
+                            result = getKeys(manifest["sap.ui5"].componentUsages, result);
+                        }
+                    }
+                    resolve(result);
+                })
+                .fail(function () {
+                    reject(new Error("Could not fetch manifest at '" + manifestPath));
+                });
+        });
+    };
+    function registerModules(dataFromAppIndex) {
+        Object.keys(dataFromAppIndex).forEach(function (moduleDefinitionKey) {
+            var moduleDefinition = dataFromAppIndex[moduleDefinitionKey];
+            if (moduleDefinition && moduleDefinition.dependencies) {
+                moduleDefinition.dependencies.forEach(function (dependency) {
+                    if (dependency.url && dependency.url.length > 0 && dependency.type === "UI5LIB") {
+                        sap.ui.require(["sap/base/Log"], function (Log) {
+                            Log.info("Registering Library " +
+                                dependency.componentId +
+                                " from server " +
+                                dependency.url);
+                        });
+                        var compId = dependency.componentId.replace(/\./g, "/");
+                        var config = {
+                            paths: {
+                            }
+                        };
+                        config.paths[compId] = dependency.url;
+                        sap.ui.loader.config(config);
+                    }
+                });
+            }
+        });
+    }
+    /**
+     * Registers the module paths for dependencies of the given component.
+     * @param {string} manifestPath The the path to the app manifest path
+     * for which the dependencies should be registered.
+     * @returns {Promise} A promise which is resolved when the ajax request for
+     * the app-index was successful and the module paths were registered.
+     */
+    sap.registerComponentDependencyPaths = function (manifestPath) {
+
+        return fioriToolsGetManifestLibs(manifestPath).then(function (libs) {
+            if (libs && libs.length > 0) {
+                var url = "/sap/bc/ui2/app_index/ui5_app_info?id=" + libs;
+                var sapClient = "";
+
+                return new Promise(
+                    function (resolve) {
+                        sap.ui.require(["sap/base/util/UriParameters"], function (UriParameters) {
+                            sapClient = UriParameters.fromQuery(window.location.search).get("sap-client");
+                            if (sapClient && sapClient.length === 3) {
+                                url = url + "&sap-client=" + sapClient;
+                            }
+                            resolve(url);
+                        });
+                    }).then(function (url2) {
+                        return $.ajax(url2).done(function (data) {
+                            if (data) {
+                                registerModules(data);
+                            }
+                        });
+                    });
+            } else {
+                return undefined;
+            }
+        });
+    };
+})(sap);
+
+function registerSAPFonts() {  
+    sap.ui.require(["sap/ui/core/IconPool"], function (IconPool) {  
+    //Fiori Theme font family and URI
+    var fioriTheme = {
+        fontFamily: "SAP-icons-TNT",
+        fontURI: sap.ui.require.toUrl("sap/tnt/themes/base/fonts/")
+    };
+    //Registering to the icon pool
+    IconPool.registerFont(fioriTheme);
+    //SAP Business Suite Theme font family and URI
+    var bSuiteTheme = {
+        fontFamily: "BusinessSuiteInAppSymbols",
+        fontURI: sap.ui.require.toUrl("sap/ushell/themes/base/fonts/")
+    };
+    //Registering to the icon pool
+    IconPool.registerFont(bSuiteTheme);
+    });
+}
+
+/*eslint-disable fiori-custom/sap-browser-api-warning, fiori-custom/sap-no-dom-access*/
+var currentScript = document.getElementById("locate-reuse-libs");
+if (!currentScript) {
+    currentScript = document.currentScript;
+}
+var manifestUri = currentScript.getAttribute("data-sap-ui-manifest-uri");
+var componentName = currentScript.getAttribute("data-sap-ui-componentName");
+var useMockserver = currentScript.getAttribute("data-sap-ui-use-mockserver");
+
+sap.registerComponentDependencyPaths(manifestUri)
+    .catch(function (error) {
+        sap.ui.require(["sap/base/Log"], function (Log) {
+            Log.error(error);
+        });
+    })
+    .finally(function () {
+
+        // setting the app title with internationalization 
+        sap.ui.getCore().attachInit(function () {
+            var sLocale = sap.ui.getCore().getConfiguration().getLanguage();
+            sap.ui.require(["sap/base/i18n/ResourceBundle"], function (ResourceBundle) {
+                var oResourceBundle = ResourceBundle.create({
+                    url: "i18n/i18n.properties",
+                    locale: sLocale
+                });
+                document.title = oResourceBundle.getText("appTitle");
+            });
+        });
+
+        if (componentName && componentName.length > 0) {
+            if (useMockserver && useMockserver === "true") {
+                sap.ui.getCore().attachInit(function () {
+                    registerSAPFonts();
+                    sap.ui.require([componentName.replace(/\./g, "/") + "/localService/mockserver"], function (server) {
+                        // set up test service for local testing
+                        server.init();
+                        // initialize the ushell sandbox component
+                        sap.ushell.Container.createRenderer().placeAt("content");
+                    });
+                });
+            } else {
+                // Requiring the ComponentSupport module automatically executes the component initialisation for all declaratively defined components
+                sap.ui.require(["sap/ui/core/ComponentSupport"]);
+
+                // setting the app title with the i18n text 
+                sap.ui.getCore().attachInit(function () {
+                    registerSAPFonts();
+                    var sLocale = sap.ui.getCore().getConfiguration().getLanguage();
+                    sap.ui.require(["sap/base/i18n/ResourceBundle"], function (ResourceBundle) {
+                        var oResourceBundle = ResourceBundle.create({
+                            url: "i18n/i18n.properties",
+                            locale: sLocale
+                        });
+                        document.title = oResourceBundle.getText("appTitle");
+                    });
+                });
+            }
+        } else {
+            sap.ui.getCore().attachInit(function () {
+                registerSAPFonts();
+                // initialize the ushell sandbox component
+                sap.ushell.Container.createRenderer().placeAt("content");
+            });
+        }
+    });

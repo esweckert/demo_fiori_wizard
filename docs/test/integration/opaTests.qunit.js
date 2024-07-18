@@ -1,2 +1,12 @@
-QUnit.config.autostart=false;sap.ui.getCore().attachInit(function(){"use strict";sap.ui.require(["com/esweckert/demo-transfer-app/test/integration/AllJourneys"],function(){QUnit.start()})});
-//# sourceMappingURL=opaTests.qunit.js.map
+/* global QUnit */
+QUnit.config.autostart = false;
+
+sap.ui.getCore().attachInit(function () {
+	"use strict";
+
+	sap.ui.require([
+		"com/esweckert/demo-transfer-app/test/integration/AllJourneys"
+	], function () {
+		QUnit.start();
+	});
+});

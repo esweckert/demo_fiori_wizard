@@ -1,2 +1,13 @@
-sap.ui.define(["sap/ui/test/Opa5","./arrangements/Startup","./NavigationJourney"],function(e,a){"use strict";e.extendConfig({arrangements:new a,viewNamespace:"com.esweckert.demo-transfer-app.view.",autoWait:true})});
-//# sourceMappingURL=AllJourneys.js.map
+sap.ui.define([
+	"sap/ui/test/Opa5",
+	"./arrangements/Startup",
+	"./NavigationJourney"
+], function (Opa5, Startup) {
+	"use strict";
+
+	Opa5.extendConfig({
+		arrangements: new Startup(),
+		viewNamespace: "com.esweckert.demo-transfer-app.view.",
+		autoWait: true
+	});
+});
