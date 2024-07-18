@@ -25,8 +25,8 @@
 <EntitySet Name="Errors" EntityType="ZMM_PROCESS_MMS_ARTICLE_SRV.ErrorsType" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
 <EntitySet Name="ProductSet" EntityType="ZMM_PROCESS_MMS_ARTICLE_SRV.ProductSetType" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
 </EntityContainer>
-<atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="http://sape15.media-saturn.com:8015/sap/opu/odata/sap/ZMM_PROCESS_MMS_ARTICLE_SRV/$metadata"/>
-<atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="http://sape15.media-saturn.com:8015/sap/opu/odata/sap/ZMM_PROCESS_MMS_ARTICLE_SRV/$metadata"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="http://sapt01.esweckert.com:8015/sap/opu/odata/sap/ZMM_DEMO_TRANSFER_SRV/$metadata"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="http://sapt01.esweckert.com:8015/sap/opu/odata/sap/ZMM_DEMO_TRANSFER_SRV/$metadata"/>
 </Schema>
 </edmx:DataServices>
 </edmx:Edmx>

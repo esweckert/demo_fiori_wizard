@@ -45,7 +45,7 @@
       "path": "/sap/opu/odata",
       "target": {
         "type": "destination",
-        "name": "E15_400",
+        "name": "T01_100",
         "entryPath": "/sap/opu/odata"
       },
       "description": "DEV EMBEDDED FIORI"

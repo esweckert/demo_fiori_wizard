@@ -11,10 +11,9 @@ sap.ui.define([
 	"sap/ui/core/message/Message",
 	"sap/ui/core/Fragment",
 	"sap/ui/core/library",
-	"sap/ui/model/odata/v2/ODataModel",
-	"com/esweckert/demo-transfer-app/localService/mockserver"
+	"sap/ui/model/odata/v2/ODataModel"
 ], function (Controller, JSONModel, library, HorizontalLayout, VerticalLayout, Dialog, DialogType, MessageBox, MessageToast, Message,
-	Fragment, coreLibrary, ODataModel, mockserver) {
+	Fragment, coreLibrary, ODataModel) {
 	"use strict";
 
 	// shortcut for sap.ui.core.MessageType
@@ -41,21 +40,6 @@ sap.ui.define([
 				value: '',
 				state: false
 			});
-
-			/**			var sODataServiceUrl = "/sap/opu/odata/sap/ZMM_PROCESS_MMS_ARTICLE_SRV/";
-			 
-						// init our mock server
-						mockserver.init(sODataServiceUrl);
-			
-						// Northwind service
-						this.getView().setModel(
-							new ODataModel(sODataServiceUrl, {
-								defaultBindingMode: "TwoWay"
-							})
-						);
-			
-						this.getView().bindElement("/ProductSet");
-						*/
 
 			// Create upload fragment
 			Fragment.load({
@@ -286,7 +270,7 @@ sap.ui.define([
 			var that = this;
 			var uri = "/ProductSet";
 			var oDataModel = new sap.ui.model.odata.v2.ODataModel({
-				serviceUrl: "/sap/opu/odata/sap/ZMM_PROCESS_MMS_ARTICLE_SRV/",
+				serviceUrl: "/sap/opu/odata/sap/ZMM_DEMO_TRANSFER_SRV/",
 				defaultUpdateMethod: "POST"
 			});
 			oDataModel.setHeaders({

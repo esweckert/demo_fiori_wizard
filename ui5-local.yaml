@@ -24,15 +24,15 @@ server:
         ignoreCertError: false
         backend:
           - path: /sap
-            url: http://sape15.media-saturn.com:443
-            client: "400"
-            destination: E15_400
+            url: http://sapt01.esweckert.com:443
+            client: "100"
+            destination: T01_100
         ui5:
           path:
             - /resources
             - /test-resources
           url: https://ui5.sap.com
-          version: 1.71.16    
+          version: 1.71.16
     - name: fiori-tools-appreload
       afterMiddleware: compression
       configuration:
@@ -49,8 +49,8 @@ server:
       configuration:
         mountPath: /
         services:
-          - urlPath: /sap/opu/odata/sap/ZMM_PROCESS_MMS_ARTICLE_SRV
+          - urlPath: /sap/opu/odata/sap/ZMM_DEMO_TRANSFER_SRV
             metadataPath: ./webapp/localService/metadata.xml
             mockdataPath: ./webapp/localService/data
             generateMockData: true
-        annotations: []    
+        annotations: []

@@ -2,9 +2,8 @@ sap.ui.define([
 	"sap/ui/core/UIComponent",
 	"sap/ui/Device",
 	"sap/ui/core/Messaging",
-	"com/esweckert/demo-transfer-app//localService/mockserver",
 	"com/esweckert/demo-transfer-app/model/models"
-], function (UIComponent, Device, Messaging, mockserver, models) {
+], function (UIComponent, Device, Messaging, models) {
 	"use strict";
 
 	return UIComponent.extend("com.esweckert.demo-transfer-app.Component", {
@@ -19,8 +18,6 @@ sap.ui.define([
 		 * @override
 		 */
 		init: function () {
-
-			//			mockserver.init();
 
 			// call the base component's init function
 			UIComponent.prototype.init.apply(this, arguments);

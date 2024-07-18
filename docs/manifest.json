@@ -15,8 +15,8 @@
             "toolsId": "0b7ce132-2baa-465c-89ff-b1e9faae4253"
         },
         "dataSources": {
-            "ZMM_PROCESS_MMS_ARTICLE_SRV": {
-                "uri": "/sap/opu/odata/sap/ZMM_PROCESS_MMS_ARTICLE_SRV/",
+            "ZMM_DEMO_TRANSFER_SRV": {
+                "uri": "/sap/opu/odata/sap/ZMM_DEMO_TRANSFER_SRV/",
                 "type": "OData",
                 "settings": {
                     "localUri": "localService/metadata.xml"
@@ -73,12 +73,12 @@
             "": {
                 "settings": {
                     "refreshAfterChange": false,
-					"defaultBindingMode": "OneWay",
-					"defaultUpdateMethod" : "Post",
-					"skipMetadataAnnotationParsing" : true,
-					"disableHeadRequestForToken" : true
+                    "defaultBindingMode": "OneWay",
+                    "defaultUpdateMethod": "Post",
+                    "skipMetadataAnnotationParsing": true,
+                    "disableHeadRequestForToken": true
                 },
-                "dataSource": "ZMM_PROCESS_MMS_ARTICLE_SRV"
+                "dataSource": "ZMM_DEMO_TRANSFER_SRV"
             }
         },
         "resources": {
@@ -116,9 +116,5 @@
                 }
             }
         }
-    },
-    "sap.platform.abap": {
-        "uri": "/sap/bc/ui5_ui5/sap/zmm_arttransfer/webapp",
-        "_version": "1.1.0"
     }
 }

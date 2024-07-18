@@ -13,6 +13,9 @@ UIAdaptation_index.html
 
 .DS_Store
 
+/.che/
+/.vscode/
+
 AppVariant_index.html
 AppVariantPreviewPayload.zip
 mergedManifestDescriptor.json
