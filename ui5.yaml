@@ -6,6 +6,8 @@ builder:
   resources:
     excludes:
       - "/test/**"
+      - "index_local.html"
+      - "index_standard.html"
 server:
   customMiddleware:
     - name: fiori-tools-proxy

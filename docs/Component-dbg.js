@@ -20,7 +20,7 @@ sap.ui.define([
 		 */
 		init: function () {
 
-			mockserver.init();
+			//			mockserver.init();
 
 			// call the base component's init function
 			UIComponent.prototype.init.apply(this, arguments);
