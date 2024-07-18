@@ -1,0 +1,15 @@
+{
+    "error":{
+        "code":"E100",
+        "message":{
+            "lang":"en",
+            "value":"Data has not been transfered to SAP"
+        },
+        "innererror":{
+            "transactionid":"566E06A5AC200A50E10080000A0F87DB",
+            "timestamp":"20160310120625.4547750",
+            "Error_Resolution":{ },
+            "errordetails":[ ]
+        }
+    }
+}

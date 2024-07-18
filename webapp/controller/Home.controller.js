@@ -42,19 +42,20 @@ sap.ui.define([
 				state: false
 			});
 
-			var sODataServiceUrl = "/sap/opu/odata/sap/ZMM_PROCESS_MMS_ARTICLE_SRV/";
-
-			// init our mock server
-			mockserver.init(sODataServiceUrl);
-
-			// Northwind service
-			this.getView().setModel(
-				new ODataModel(sODataServiceUrl, {
-					defaultBindingMode: "TwoWay"
-				})
-			);
-
-			this.getView().bindElement("/ProductSet");
+			/**			var sODataServiceUrl = "/sap/opu/odata/sap/ZMM_PROCESS_MMS_ARTICLE_SRV/";
+			 
+						// init our mock server
+						mockserver.init(sODataServiceUrl);
+			
+						// Northwind service
+						this.getView().setModel(
+							new ODataModel(sODataServiceUrl, {
+								defaultBindingMode: "TwoWay"
+							})
+						);
+			
+						this.getView().bindElement("/ProductSet");
+						*/
 
 			// Create upload fragment
 			Fragment.load({
@@ -299,6 +300,7 @@ sap.ui.define([
 					var sData = that.getView().byId("textArea").getValue();
 					var aData = sData.split(',');
 					var iCount = aData.length;
+
 
 					MessageBox.success(that.getResourceBundle().getText("successUpload"), {
 						title: that.getResourceBundle().getText("successUploadTitle"),

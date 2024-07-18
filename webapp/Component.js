@@ -1,8 +1,9 @@
 sap.ui.define([
 	"sap/ui/core/UIComponent",
 	"sap/ui/Device",
+	"sap/ui/core/Messaging",
 	"com/esweckert/demo-transfer-app/model/models"
-], function (UIComponent, Device, models) {
+], function (UIComponent, Device, Messaging, models) {
 	"use strict";
 
 	return UIComponent.extend("com.esweckert.demo-transfer-app.Component", {
@@ -19,6 +20,9 @@ sap.ui.define([
 		init: function () {
 			// call the base component's init function
 			UIComponent.prototype.init.apply(this, arguments);
+
+			// set message model
+			this.setModel(Messaging.getMessageModel(), "message");
 
 			// enable routing
 			this.getRouter().initialize();
